@@ -1,0 +1,16 @@
+{
+  "private": true,
+  "name": "tutorial-jsc8-stream-ws-on-cfw",
+  "version": "1.0.0",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "format": "prettier --write '**/*.{js,css,json,md}'"
+  },
+  "devDependencies": {
+    "prettier": "^1.18.2"
+  },
+  "dependencies": {
+    "jsc8": "0.17.3-beta.0"
+  }
+}

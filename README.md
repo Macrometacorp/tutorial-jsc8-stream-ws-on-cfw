@@ -1,26 +1,18 @@
 # WebSocket on Cloudflare for Streams
 
-This tutorial will demo how can you use jsc8 stream with Cloudflare edge worker.
+This tutorial will demo how you can use jsc8 stream with Cloudflare edge worker.
 
-## How to Run
+## How to Run and Publish on Cloudflare worker
 >```
 > git clone https://github.com/Macrometacorp/tutorial-jsc8-stream-ws-on-cfw
 > cd tutorial-jsc8-stream-ws-on-cfw
 > npm install
 > update `account_id` in wrangler.toml
 > wrangler preview
+> wrangler publish //CF Publish
 >```
 
-## Deploy on Cloudflare worker
->```
-> git clone https://github.com/Macrometacorp/tutorial-jsc8-stream-ws-on-cfw
-> cd tutorial-jsc8-stream-ws-on-cfw
-> npm install
-> update `account_id` in wrangler.toml
-> wrangler publisher
->```
-
-### Key difference in regular stream connection and cloudflare edge worker stream connection
+### How to create websocket stream connection with Cloudflare edge worker 
 
 1. Creating jsC8 client
 ```js
@@ -40,7 +32,7 @@ client = await stream.consumer(
     "SampleStream-my-subscription",
     "gdn1.paas.macrometa.io",
     { otp: consumerOTP },
-    "cloudflare", // When creating stream reader pass last parameter as "cloudflare" for jsc8 to create Cloudflare websocket connection to Stream
+    "cloudflare", // When creating a stream reader, pass "cloudflare" as the last parameter in order to create Cloudflare websocket connection
 )
 ```
 
@@ -51,6 +43,6 @@ const consumerOTP = await stream.getOtp()
 client = await stream.producer(
     "gdn1.paas.macrometa.io",, 
     { otp: consumerOTP }, 
-    "cloudflare" // When creating stream producer pass last parameter as "cloudflare" for jsc8 to create Cloudflare websocket connection to Stream
+    "cloudflare" // When creating a stream producer, pass "cloudflare" as the last parameter in order to create Cloudflare websocket connection
 )
 ```

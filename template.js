@@ -127,9 +127,9 @@ document.querySelector("#stopProducer").addEventListener("click", closeWsConnect
 `
 
 export default () => {
-  return new Response(template, {
-    headers: {
-      'Content-type': 'text/html; charset=utf-8'
-    }
-  })
+    return new Response(template, {
+        headers: {
+            "Content-type": "text/html; charset=utf-8",
+        },
+    })
 }

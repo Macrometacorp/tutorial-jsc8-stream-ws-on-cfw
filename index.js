@@ -1,9 +1,9 @@
 import template from "./template"
 const jsc8 = require("jsc8")
 
-const URL = "https://gdn.paas.macrometa.io"
+const gdnUrl = "https://gdn.paas.macrometa.io"
 const jsc8Client = new jsc8({
-    url: url,
+    url: gdnUrl,
     apiKey: "xxxx",
     agent: fetch.bind(this),
 })
@@ -22,11 +22,11 @@ const macrometaWsHandler = async (request) => {
     const consumerOTP = await stream.getOtp()
 
     if (streamType === "producer") {
-        client = await stream.producer(URL.replace("https://", ""), { otp: consumerOTP }, "cloudflare")
+        client = await stream.producer(gdnUrl.replace("https://", ""), { otp: consumerOTP }, "cloudflare")
     } else {
         client = await stream.consumer(
             "SampleStream-my-subscription",
-            URL.replace("https://", ""),
+            gdnUrl.replace("https://", ""),
             { otp: consumerOTP },
             "cloudflare",
         )

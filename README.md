@@ -39,6 +39,7 @@ clientConsumer = await stream.consumer(
 
 3. Adding on message event listener for the above consumer (uses a cloudflare websocket connection)
 ```js
+clientConsumer.accept()
 clientConsumer.addEventListener("message", (msg) => {
     const { payload } = JSON.parse(msg);
     console.log("Message Received: ", Buffer.from(payload, "base64").toString("ascii"));
@@ -59,6 +60,7 @@ clientProducer = await stream.producer(
 
 5. Send messages via the above stream producer
 ```js
+clientProducer.accept()
 const message = {
     payload: Buffer.from(
         JSON.stringify({

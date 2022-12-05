@@ -9,7 +9,6 @@ This tutorial will demo how you can use jsc8 stream with Cloudflare edge worker.
 > npm install
 > update `account_id` in wrangler.toml
 > update your apikey in index.js
-> wrangler dev //local run
 > wrangler publish //CF Publish
 >```
 

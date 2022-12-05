@@ -16,15 +16,15 @@ const macrometaWsHandler = async (request) => {
     const streamName = searchParams.get("streamName")
 
     const stream = jsc8Client.stream(streamName, false)
-    const consumerOTP = await stream.getOtp()
+    const OTP = await stream.getOtp()
 
     if (streamType === "producer") {
-        client = await stream.producer(gdnUrl.replace("https://", ""), { otp: consumerOTP }, "cloudflare")
+        client = await stream.producer(gdnUrl.replace("https://", ""), { otp: OTP }, "cloudflare")
     } else {
         client = await stream.consumer(
             "SampleStream-my-subscription",
             gdnUrl.replace("https://", ""),
-            { otp: consumerOTP },
+            { otp: OTP },
             "cloudflare",
         )
     }

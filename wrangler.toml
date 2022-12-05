@@ -1,5 +1,5 @@
 name = "jsc8-stream-ws-on-cfw"
-account_id = "90c5b71b7195b7064cc06f93aad3df2e"
+account_id = ""
 workers_dev = true
 node_compat = true
 main = "index.js"

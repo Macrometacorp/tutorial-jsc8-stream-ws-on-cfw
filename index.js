@@ -36,7 +36,7 @@ const macrometaWsHandler = async (request) => {
 }
 
 export default {
-	async fetch(request) {
+    async fetch(request) {
         try {
             const pathname = new URL(request.url).pathname
             switch (pathname) {
@@ -52,7 +52,7 @@ export default {
                     return new Response("Not found", { status: 404 })
             }
         } catch (err) {
-        return new Response(err.toString())
+            return new Response(err.toString())
         }
     }
 }

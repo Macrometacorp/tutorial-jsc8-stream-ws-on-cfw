@@ -1,6 +1,7 @@
 # WebSocket on Cloudflare for Streams
 
-This tutorial will demo how you can use jsc8 stream with Cloudflare edge worker.
+This tutorial will demo how you can establish cloudflare websocket connection for streams and perform Pub-Sub
+with the stream via jsc8 SDK.
 
 ## How to Run and Publish on Cloudflare worker
 >```

@@ -41,7 +41,7 @@ clientConsumer = await stream.consumer(
 ```js
 clientConsumer.accept()
 clientConsumer.addEventListener("message", (msg) => {
-    const { payload } = JSON.parse(msg);
+    const { payload } = JSON.parse(msg.data);
     console.log("Message Received: ", Buffer.from(payload, "base64").toString("ascii"));
 }
 ```
@@ -64,7 +64,7 @@ clientProducer.accept()
 const message = {
     payload: Buffer.from(
         JSON.stringify({
-                startTime: new Date().getTime(),
+            startTime: new Date().getTime(),
         })
     ).toString("base64")
 }

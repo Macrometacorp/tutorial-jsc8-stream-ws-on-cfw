@@ -81,7 +81,7 @@ clientProducer.send(JSON.stringify(message))
     }
 ```
 
-2. Enable node compatibility in wrangler.toml by adding the below line as jsc8 library assumes a node environment
+2. Add the following in wrangler.toml to enable node compatibility as jsc8 library assumes a node environment
 ```js
 node_compat = true
 ```

@@ -1,6 +1,7 @@
 name = "jsc8-stream-ws-on-cfw"
-type = "webpack"
 account_id = ""
 workers_dev = true
+node_compat = true
+main = "index.js"
+compatibility_date = "2022-12-05"
 route = ""
-zone_id = ""

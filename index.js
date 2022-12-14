@@ -1,15 +1,12 @@
+import jsc8 from "jsc8"
 import template from "./template"
-const jsc8 = require("jsc8")
 
-const gdnUrl = "https://gdn.paas.macrometa.io"
+const gdnUrl = "https://play.macrometa.io"
 const jsc8Client = new jsc8({
     url: gdnUrl,
-    apiKey: "xxxx",
-    agent: fetch.bind(this),
-})
-
-addEventListener("fetch", (event) => {
-    event.respondWith(handleRequest(event.request))
+    apiKey: "XXXXX",
+    fabricName: "_system",
+    agent: fetch,
 })
 
 const macrometaWsHandler = async (request) => {
@@ -18,16 +15,17 @@ const macrometaWsHandler = async (request) => {
     const streamType = searchParams.get("streamType")
     const streamName = searchParams.get("streamName")
 
-    const stream = jsc8Client.stream(streamName, true)
-    const consumerOTP = await stream.getOtp()
+    const stream = jsc8Client.stream(streamName, false)
+    // Two separate OTPs are required for consumer and producer
+    const streamOTP = await stream.getOtp()
 
     if (streamType === "producer") {
-        client = await stream.producer(gdnUrl.replace("https://", ""), { otp: consumerOTP }, "cloudflare")
+        client = await stream.producer(gdnUrl.replace("https://", ""), { otp: streamOTP }, "cloudflare")
     } else {
         client = await stream.consumer(
             "SampleStream-my-subscription",
             gdnUrl.replace("https://", ""),
-            { otp: consumerOTP },
+            { otp: streamOTP },
             "cloudflare",
         )
     }
@@ -38,22 +36,24 @@ const macrometaWsHandler = async (request) => {
     })
 }
 
-async function handleRequest(request) {
-    try {
-        const pathname = new URL(request.url).pathname
-        switch (pathname) {
-            case "/":
-                return template()
-            case "/setupWebsocket":
-                try {
-                    return await macrometaWsHandler(request)
-                } catch (error) {
-                    throw error
-                }
-            default:
-                return new Response("Not found", { status: 404 })
+export default {
+    async fetch(request) {
+        try {
+            const pathname = new URL(request.url).pathname
+            switch (pathname) {
+                case "/":
+                    return template()
+                case "/setupWebsocket":
+                    try {
+                        return await macrometaWsHandler(request)
+                    } catch (error) {
+                        throw error
+                    }
+                default:
+                    return new Response("Not found", { status: 404 })
+            }
+        } catch (err) {
+            return new Response(err.toString())
         }
-    } catch (err) {
-        return new Response(err.toString())
     }
 }

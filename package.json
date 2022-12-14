@@ -11,6 +11,6 @@
         "prettier": "^1.18.2"
     },
     "dependencies": {
-        "jsc8": "0.17.6-beta.5"
+        "jsc8": "0.17.11-update.1"
     }
 }
